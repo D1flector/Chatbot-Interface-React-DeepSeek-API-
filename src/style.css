@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   height: 100vh;
   display: flex;
@@ -37,6 +37,33 @@ body {
   max-width: 80%;
   display: inline-block;
   animation: fadeIn 0.3s ease-in-out;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.message pre {
+  background-color: #f3f4f6;
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto; /* Добавляет прокрутку, если нужно */
+  white-space: pre-wrap; /* Перенос строк внутри блока */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-family: monospace;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.message code {
+  background-color: #f3f4f6;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 14px;
+  word-break: break-word;
 }
 
 .user {
