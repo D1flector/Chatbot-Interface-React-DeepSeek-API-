@@ -48,6 +48,11 @@ function App() {
           placeholder="Введите сообщение..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSend();
+            }
+          }}
         />
         <button onClick={handleSend} disabled={loading}>
           {loading ? 'Ждём ответ...' : 'Отправить'}
