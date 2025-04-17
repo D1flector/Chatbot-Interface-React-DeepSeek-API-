@@ -1,7 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
-  background-color: #f0f0f0;
+  background: linear-gradient(135deg, #cfd9ff, #a0c4ff, #b3d9ff);
+  overflow-x: hidden;
 }
 
 .container {
@@ -15,28 +20,50 @@ body {
 
 .chat-box {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   background: white;
   padding: 10px;
   overflow-y: auto;
-  border-radius: 8px;
+  border-radius: 20px;
   margin-bottom: 10px;
 }
 
+
 .message {
-  margin-bottom: 8px;
-  padding: 8px 12px;
-  border-radius: 12px;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  border-radius: 16px;
   max-width: 80%;
+  display: inline-block;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .user {
   align-self: flex-end;
-  background-color: #d1e7dd;
+  background-color: #aee2ff;
+  color: #003b73;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .ai {
   align-self: flex-start;
-  background-color: #e7d1dd;
+  background-color: #dbeafe;
+  color: #0f172a;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .input-area {
@@ -48,10 +75,18 @@ input {
   flex: 1;
   padding: 10px;
   font-size: 16px;
+  border-radius: 10px;
 }
 
 button {
   padding: 10px 20px;
   font-size: 16px;
+  border-radius: 10px;
   cursor: pointer;
+  background: white;
+  transition: 0.4 ease; 
+}
+
+button:hover {
+  background: linear-gradient(135deg, #cfd9ff, #a0c4ff, #b3d9ff);
 }
