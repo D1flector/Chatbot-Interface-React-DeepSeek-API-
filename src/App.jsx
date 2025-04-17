@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { sendToAI } from './api.js';
+import ReactMarkdown from 'react-markdown';
 
 function App() {
   const [input, setInput] = useState('');
@@ -37,7 +38,7 @@ function App() {
       <div className="chat-box">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.role}`}>
-            {msg.content}
+            <ReactMarkdown>{msg.content}</ReactMarkdown>
           </div>
         ))}
       </div>
