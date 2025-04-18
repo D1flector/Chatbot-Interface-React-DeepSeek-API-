@@ -117,3 +117,55 @@ button {
 button:hover {
   background: linear-gradient(135deg, #cfd9ff, #a0c4ff, #b3d9ff);
 }
+
+.start-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at center, #3a3a5a, #1b1b2d);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+.start-btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: #4a65de;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px #4ade80;
+}
+
+
+.start-name, .start-subtitle{
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5, #4ade80);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+

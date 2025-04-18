@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { sendToAI } from './api.js';
+import StartScreen from './StartScreen.jsx';
 import ReactMarkdown from 'react-markdown';
 
 function App() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [started, setStarted] = useState(true);
+
 
   const handleSend = async () => {
     if (!input.trim()) return; // Проверяем, что ввод не пустой
@@ -32,7 +35,7 @@ function App() {
     setInput('');
   };
 
-  return (
+  return ( started ? <StartScreen setStart={setStarted}/> :
     <div className="container">
       <h1>AI Чат</h1>
       <div className="chat-box">
