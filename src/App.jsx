@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { sendToAI } from './api.js';
 import StartScreen from './StartScreen.jsx';
-import ReactMarkdown from 'react-markdown';
+import ChatInterface from './ChatInterface.jsx';
 
 function App() {
   const [input, setInput] = useState('');
@@ -35,35 +35,16 @@ function App() {
     setInput('');
   };
 
-  return ( started ? <StartScreen setStart={setStarted}/> :
-    <div className="container">
-      <h1>AI Чат</h1>
-      <div className="chat-box">
-        {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.role}`}>
-            <ReactMarkdown>{msg.content}</ReactMarkdown>
-          </div>
-        ))}
-      </div>
-
-      <div className="input-area">
-        <input
-          type="text"
-          placeholder="Введите сообщение..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleSend();
-            }
-          }}
-        />
-        <button onClick={handleSend} disabled={loading}>
-          {loading ? 'Ждём ответ...' : 'Отправить'}
-        </button>
-      </div>
-    </div>
-  );
+  return ( started
+    ? <StartScreen setStart={setStarted}/>
+    : <ChatInterface 
+      messages={messages}
+      input={input}
+      handleSend={handleSend}
+      loading={loading}
+      setInput={setInput}
+  />
+  ) 
 }
 
 export default App;
