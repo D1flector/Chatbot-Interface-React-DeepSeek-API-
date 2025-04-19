@@ -11,29 +11,30 @@ function App() {
 
 
   const handleSend = async () => {
-    if (!input.trim()) return; // Проверяем, что ввод не пустой
-
+    if (!input.trim()) return;
+  
     setLoading(true);
-    setMessages((prevMessages) => [...prevMessages, { role: 'user', content: input }]);
-
+  
+    const newMessages = [...messages, { role: 'user', content: input }];
+    setMessages(newMessages);
+  
+    const fullContext = newMessages
+      .map(msg => `${msg.role === 'user' ? 'Пользователь' : 'AI'}: ${msg.content}`)
+      .join('\n');
+  
     try {
-      const reply = await sendToAI(input);
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { role: 'ai', content: reply }
-      ]);
+      const reply = await sendToAI(fullContext);
+      setMessages([...newMessages, { role: 'ai', content: reply }]);
     } catch (error) {
-      console.error(error)
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { role: 'ai', content: 'Произошла ошибка, попробуйте снова.' }
-      ]);
+      console.error(error);
+      setMessages([...newMessages, { role: 'ai', content: 'Произошла ошибка, попробуйте снова.' }]);
     } finally {
       setLoading(false);
     }
-
+  
     setInput('');
   };
+  
 
   return ( started
     ? <StartScreen setStart={setStarted}/>
