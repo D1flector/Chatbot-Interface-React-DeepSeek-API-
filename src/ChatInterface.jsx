@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 const ChatInterface = ( { messages, input, setInput, handleSend, loading } ) => {
+  const [typingDots, setTypingDots] = useState('');
+
+  useEffect(() => {
+    if (!loading) {
+      setTypingDots('');
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setTypingDots((prev) => {
+        if (prev === '...') return '';
+        return prev + '.';
+      });
+    }, 500);
+
+    return () => clearInterval(interval)
+  }, [loading])
+
   return (
     <div className="container">
       <h1>AI Чат</h1>
@@ -11,6 +29,7 @@ const ChatInterface = ( { messages, input, setInput, handleSend, loading } ) => 
             <ReactMarkdown>{msg.content}</ReactMarkdown>
           </div>
         ))}
+        {loading && (<div className="message ai">AI печатает{typingDots}</div>)}
       </div>
 
       <div className="input-area">
