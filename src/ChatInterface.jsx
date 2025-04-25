@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 const ChatInterface = ( { messages, input, setInput, handleSend, loading } ) => {
   const [typingDots, setTypingDots] = useState('');
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({behaviour: 'smooth'});
+  }, [messages]);
 
   useEffect(() => {
     if (!loading) {
@@ -30,6 +35,7 @@ const ChatInterface = ( { messages, input, setInput, handleSend, loading } ) => 
           </div>
         ))}
         {loading && (<div className="message ai">AI печатает{typingDots}</div>)}
+        <div ref={messagesEndRef}/>
       </div>
 
       <div className="input-area">
